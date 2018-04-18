@@ -4,7 +4,7 @@
             {{ error.message }}
         {% endif %}
     {% endif %}
-    <form action="{{ path('fos_user_security_check') }}" method="post">
+    <form name="login_base" action="{{ path('fos_user_security_check') }}" method="post">
         <fieldset>
             <legend>Login</legend>
             <div class="form-group">
