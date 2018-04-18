@@ -14,22 +14,21 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="default")
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        return $this->render('default/talisman.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
 
     /**
-     * @Route("/talisman", name="mainpage")
+     * @Route("/mainpage", name="mainpage")
      */
-    public function talismanAction(Request $request)
+    public function mainPageAction(Request $request)
     {
-        return $this->render('default/talisman.html.twig', [
+        return $this->render('default/mainpage.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }

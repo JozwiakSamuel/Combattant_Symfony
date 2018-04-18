@@ -1,5 +1,7 @@
 # app/config/security.yml
 security:
+    access_denied_url:    ~ # Example: /foo/error403
+
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
@@ -14,15 +16,28 @@ security:
     firewalls:
         main:
             pattern: ^/
+            logout_on_user_change: true
             form_login:
+                login_path: /
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-
-            logout:       true
+                # login success
+                always_use_default_target_path: false
+                default_target_path:            /mainpage
+                target_path_parameter:          _target_path
+                use_referer:                    false
+                # login failure
+                failure_path:    /
+                failure_forward: false
+                failure_path_parameter: _failure_path
+            logout: true
             anonymous:    true
 
+
     access_control:
+        - { path: ^/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/, role: ROLE_USER }
