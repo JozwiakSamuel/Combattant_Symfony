@@ -70,6 +70,19 @@ class Personnage
     private $user;
 
     /**
+     * Personnage constructor.
+     *
+     * @param string $name
+     * @param int    $strengh
+     * @param int    $dexterity
+     * @param int    $armor
+     * @param int    $life
+     * @param        $race
+     * @param        $user
+     */
+
+
+    /**
      * Get id
      *
      * @return int
