@@ -50,7 +50,7 @@
             $('#personnage_dexterity').val(Math.floor(Math.random() * (100 + 1) + 1));
         }
         $('#personnage_reroll').click(function(){
-            if($('#personnage_name').is(':empty')) { $('#personnage_name').val("noname");}
+            if(! $('#personnage_name').val()) { $('#personnage_name').val("noname");}
            reroll();
         });
         $(document).ready(function(){

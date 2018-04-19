@@ -10,6 +10,7 @@
                             <table>
                                 <tr>
                                     <th>Nom</th>
+                                    <th>Race</th>
                                     <th>Vie</th>
                                     <th>Force</th>
                                     <th>Dexterité</th>
@@ -18,6 +19,7 @@
                                 {% for character in characters %}
                                     <tr>
                                         <td>{{ character.name }}</td>
+                                        <td>{{ character.race.name }}</td>
                                         <td>{{ character.life }}</td>
                                         <td>{{ character.strengh }}</td>
                                         <td>{{ character.dexterity }}</td>
