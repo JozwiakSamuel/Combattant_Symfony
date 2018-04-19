@@ -4,11 +4,11 @@
     <div id="wrapper">
         <div class="container">
             <legend>{{ "Choisir un personnage" | trans }}</legend>
-            <form name="battle" action="{{ path('battle_game') }}" method="post">
+            <form name="battle" action="{{ path('game_play') }}" method="post">
                 <div class="row">
                     <div class="col-lg-4">
                         {% if characters is defined %}
-                            <select id="character_choosen">
+                            <select name="character">
                                 {% for character in characters %}
                                     <option value="{{ character.id }}">{{ character.name }}</option>
                                 {% endfor %}
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-lg-1">
                         {% if opponents is defined %}
-                            <select id="opponent_choosen">
+                            <select name="opponent">
                                 {% for opponent in opponents %}
                                     <option value="{{ opponent.id }}">{{ opponent.name }}</option>
                                 {% endfor %}
@@ -33,9 +33,3 @@
         </div>
     </div>
 {% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-{% endblock %}
-
-
