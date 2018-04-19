@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Personnage;
+use AppBundle\Entity\Race;
 use AppBundle\Form\PersonnageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,14 +28,16 @@ class PersonnageController extends Controller
         $personnage->setArmor(random_int(1, 100));
         $personnage->setDexterity(random_int(1, 100));
 
-        $form = $this->createForm(PersonnageType::class, $personnage);
+
+            $form = $this->createForm(PersonnageType::class, $personnage);
         if ($form->isSubmitted() && $form->handleRequest($request)->isValid()) {
-//            $personnage->setName($form['name']->getData());
-//            $personnage->setStrengh($form['strengh']->getData());
-//            $personnage->setLife($form['life']->getData());
-//            $personnage->setArmor($form['armor']->getData());
-//            $personnage->setDexterity($form['dexterity']->getData());
-            $personnage->setRace($form['race']->getData());
+            $personnage->setName($form['name']->getData());
+            $race = $this->getDoctrine()->getRepository(Race::class)->find($form['race']->getData());
+            $personnage->setRace($race);
+            $personnage->setStrengh($personnage->getStrengh() + $race->getStrengh());
+            $personnage->setArmor($personnage->getArmor() + $race->getArmor());
+            $personnage->setDexterity($personnage->getDexterity() + $race->getDexterity());
+
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($personnage);
