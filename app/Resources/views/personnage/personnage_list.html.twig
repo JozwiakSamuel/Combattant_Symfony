@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div class="container">
+                <legend>{{ "Vos personnages" | trans }}</legend>
+                {% if characters is defined %}
+                    {% if characters is iterable %}
+                        <div class="table table-responsive">
+                            <table>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Vie</th>
+                                    <th>Force</th>
+                                    <th>Dexterité</th>
+                                    <th>Armure</th>
+                                </tr>
+                                {% for character in characters %}
+                                    <tr>
+                                        <td>{{ character.name }}</td>
+                                        <td>{{ character.life }}</td>
+                                        <td>{{ character.strengh }}</td>
+                                        <td>{{ character.dexterity }}</td>
+                                        <td>{{ character.armor }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                    {% else %}
+                        <div class="table table-responsive">
+                            <table>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Vie</th>
+                                    <th>Force</th>
+                                    <th>Dexterité</th>
+                                    <th>Armure</th>
+                                </tr>
+                                <tr>
+                                    <td>{{ character.name }}</td>
+                                    <td>{{ character.life }}</td>
+                                    <td>{{ character.strengh }}</td>
+                                    <td>{{ character.dexterity }}</td>
+                                    <td>{{ character.armor }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="form-group">
+                        <p>Pas de personnages</p>
+                    </div>
+                {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+

@@ -65,7 +65,7 @@ class Personnage
 
     /**
      * Many characters has one user.
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personnage")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      */
     private $user;
 
